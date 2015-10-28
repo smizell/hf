@@ -68,7 +68,7 @@ hf.transitions(hfObj);
 
 ### `hf.path`
 
-Takes an Hf object and an array of steps and returns the value if found or undefined if not.
+Takes an object or array and an array of steps. It returns the value if found or undefined if not.
 
 ```js
 // Returns 'one'

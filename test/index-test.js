@@ -352,9 +352,15 @@ describe('Hf', () => {
       });
     });
 
-    context('when the value given is not an object', () => {
+    context('when the value given is not an object or array', () => {
       it('returns undefined', () => {
         expect(hf.path('foobar', ['foo', 'bar'])).to.be.undefined;
+      });
+    });
+
+    context('when the value given is an array', () => {
+      it('returns the correct value', () => {
+        expect(hf.path([{ foo: 'bar'}], [0, 'foo'])).to.equal('bar');
       });
     });
 

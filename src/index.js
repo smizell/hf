@@ -30,7 +30,7 @@ export default {
   },
 
   path: (obj = {}, steps = [], defaultValue) => {
-    if (!_.isObject(obj)) return undefined;
+    if (!_.isObject(obj) && !_.isArray(obj)) return undefined;
     if (!_.isArray(steps)) return undefined;
     if (steps.length === 0 ) return undefined;
 
