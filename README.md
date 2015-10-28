@@ -16,7 +16,7 @@ Takes an Hf object and a `rel` and returns the first transitions it finds. If th
 
 ```js
 // returns either undefined or a transition object
-hf.getByRel(hfObj, rel);
+hf.getByRel(hfObj, 'next');
 ```
 
 ### `hf.filterByRel`
@@ -25,16 +25,16 @@ Takes and Hf object and a `rel` and returns an array of transitions with a match
 
 ```js
 // returns an array of transition objects
-hf.filterByRel(hfObj, rel);
+hf.filterByRel(hfObj, 'next');
 ```
 
 ### `hf.filterByTag`
 
-Takes and Hf object and a `tag` and returns an array of transitions with a matching `tag`.
+Takes and Hf object and a `tag` and returns an array of transitions with a matching `tag`. The `tag` argument can be either `link`, `form`, or `embed`.
 
 ```js
 // returns an array of transition objects
-hf.filterByRel(hfObj, tag);
+hf.filterByRel(hfObj, 'link');
 ```
 
 ### `hf.attributes`
@@ -52,7 +52,7 @@ Takes an Hf object and returns the transitions if there are any. You use this in
 
 ```js
 // returns an array of transition objects
-hf.attributes(hfObj);
+hf.transitions(hfObj);
 ```
 
 ### `hf.path`
