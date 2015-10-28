@@ -16,8 +16,7 @@ export default {
       }
     }
 
-    if (link) return link;
-    return undefined;
+    return link;
   },
 
   filterByRel: (transitions = [], rel) => {

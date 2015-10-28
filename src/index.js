@@ -7,14 +7,16 @@ export default {
     return transitionsFn.getByRel(obj.transitions, rel);
   },
 
-  filterByRel: (obj = {}, rel) => {
-    if (!_.isObject(obj)) return [];
-    return transitionsFn.filterByRel(obj.transitions, rel);
+  filterByRel: (value = {}, rel) => {
+    if (_.isArray(value)) return transitionsFn.filterByRel(value, rel);
+    if (_.isObject(value)) return transitionsFn.filterByRel(value.transitions, rel);
+    return [];
   },
 
-  filterByTag: (obj = {}, tag) => {
-    if (!_.isObject(obj)) return [];
-    return transitionsFn.filterByTag(obj.transitions, tag);
+  filterByTag: (value = {}, tag) => {
+    if (_.isArray(value)) return transitionsFn.filterByTag(value, tag);
+    if (_.isObject(value)) return transitionsFn.filterByTag(value.transitions, tag);
+    return [];
   },
 
   attributes: (obj = {}) => {
@@ -31,7 +33,6 @@ export default {
     if (!_.isObject(obj)) return undefined;
     if (!_.isArray(steps)) return undefined;
     if (steps.length === 0 ) return undefined;
-    let value;
 
     // Try to get the first step
     const firstStep = obj[steps[0]];
@@ -44,7 +45,7 @@ export default {
     }
 
     // We've made it this far, so we have an initial value
-    value = firstStep;
+    let value = firstStep;
 
     // Loop through the remainder of steps, hence starting at 1
     for (let i = 1; i < steps.length; i++) {
@@ -55,6 +56,7 @@ export default {
       }
     }
 
+    // Allows for returning null values
     if (value !== undefined) return value;
     return defaultValue;
   },

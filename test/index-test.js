@@ -105,10 +105,21 @@ describe('Hf', () => {
         ],
       };
 
-      it('returns undefined', () => {
-        const transitions = hf.filterByRel(hfObj, 'next');
+      function testFilterByRel(transitions) {
         expect(transitions[0]).to.deep.equal(hfObj.transitions[1]);
         expect(transitions.length).to.equal(1);
+      }
+
+      context('when given an Hf object', () => {
+        it('returns the `next` links', () => {
+          testFilterByRel(hf.filterByRel(hfObj, 'next'));
+        });
+      });
+
+      context('when given a transitions array', () => {
+        it('returns the `next` links', () => {
+          testFilterByRel(hf.filterByRel(hfObj.transitions, 'next'));
+        });
       });
     });
 
@@ -175,8 +186,21 @@ describe('Hf', () => {
         ],
       };
 
-      it('returns each transition for that given tag', () => {
-        expect(hf.filterByTag(hfObj, 'link')).to.be.length(2);
+      function testFilterByTag(transitions) {
+        expect(transitions).to.be.length(2);
+        expect(transitions).to.deep.equal([hfObj.transitions[0], hfObj.transitions[2]]);
+      }
+
+      context('when given an Hf object', () => {
+        it('returns each transition for that given tag', () => {
+          testFilterByTag(hf.filterByTag(hfObj, 'link'));
+        });
+      });
+
+      context('when given a transitions array', () => {
+        it('returns each transition for that given tag', () => {
+          testFilterByTag(hf.filterByTag(hfObj.transitions, 'link'));
+        });
       });
     });
 
