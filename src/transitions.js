@@ -10,10 +10,9 @@ export default {
 
     // Returns the embedded transition first if it finds it
     for (let i = 0; i < transitions.length; i++) {
-      let transition = transitions[i];
-      if (_.includes(transition.rels, rel)) {
-        if (transition.tag === 'embed') return transition;
-        if (transition.tag === 'link' && !link) link = transition;
+      if (_.includes(transitions[i].rels, rel)) {
+        if (transitions[i].tag === 'embed') return transitions[i];
+        if (transitions[i].tag === 'link' && !link) link = transitions[i];
       }
     }
 

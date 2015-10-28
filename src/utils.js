@@ -7,5 +7,5 @@ export default {
   includes,
   isObject,
   isArray,
-  isString
+  isString,
 };
