@@ -1,6 +1,5 @@
 import {expect} from 'chai';
-
-import hf from '../src/index.js';
+import hf from '../src/index';
 
 describe('Hf', () => {
   describe('#getByRel', () => {
