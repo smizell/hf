@@ -1,7 +1,7 @@
 {
-  "name": "hyp",
+  "name": "hf",
   "version": "0.1.0",
-  "description": "Functions for working with Hyp",
+  "description": "Functions for working with Hf representations",
   "main": "lib/index.js",
   "scripts": {
     "test": "peasant test",
