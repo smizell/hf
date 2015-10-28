@@ -1,27 +1,35 @@
+import _ from './utils';
 import transitionsFn from './transitions';
 
 export default {
-  getByRel: (obj, rel) => {
+  getByRel: (obj = {}, rel) => {
+    if (!_.isObject(obj)) return undefined;
     return transitionsFn.getByRel(obj.transitions, rel);
   },
 
-  filterByRel: (obj, rel) => {
+  filterByRel: (obj = {}, rel) => {
+    if (!_.isObject(obj)) return [];
     return transitionsFn.filterByRel(obj.transitions, rel);
   },
 
-  filterByTag: (obj, tag) => {
+  filterByTag: (obj = {}, tag) => {
+    if (!_.isObject(obj)) return [];
     return transitionsFn.filterByTag(obj.transitions, tag);
   },
 
-  transitions: (obj = {}) => {
-    return obj.transitions || [];
-  },
-
-  attributes: (obj) => {
+  attributes: (obj = {}) => {
+    if (!_.isObject(obj)) return {};
     return obj.attributes || {};
   },
 
+  transitions: (obj = {}) => {
+    if (!_.isObject(obj)) return [];
+    return obj.transitions || [];
+  },
+
   path: (obj = {}, steps = []) => {
+    if (!_.isObject(obj)) return undefined;
+    if (!_.isArray(steps)) return undefined;
     if (steps.length === 0 ) return undefined;
     let value;
 

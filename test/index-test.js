@@ -69,6 +69,24 @@ describe('Hf', () => {
         expect(hf.getByRel(hfObj, 'next')).to.deep.equal(hfObj.transitions[1]);
       });
     });
+
+    context('when the object given is undefined', () => {
+      it('returns each transition for that given tag', () => {
+        expect(hf.getByRel(undefined, 'next')).to.be.undefined;
+      });
+    });
+
+    context('when the value given is not an object', () => {
+      it('returns each transition for that given tag', () => {
+        expect(hf.getByRel('foobar', 'next')).to.be.undefined;
+      });
+    });
+
+    context('when the value given is null', () => {
+      it('returns each transition for that given tag', () => {
+        expect(hf.getByRel(null, 'next')).to.be.undefined;
+      });
+    });
   });
 
   describe('#filterByRel', () => {
@@ -116,6 +134,24 @@ describe('Hf', () => {
         expect(transitions.length).to.equal(0);
       });
     });
+
+    context('when the object given is undefined', () => {
+      it('returns each transition for that given tag', () => {
+        expect(hf.filterByRel(undefined, 'next')).to.deep.equal([]);
+      });
+    });
+
+    context('when the value given is not an object', () => {
+      it('returns each transition for that given tag', () => {
+        expect(hf.filterByRel('foobar', 'next')).to.deep.equal([]);
+      });
+    });
+
+    context('when the value given is null', () => {
+      it('returns each transition for that given tag', () => {
+        expect(hf.filterByRel(null, 'next')).to.deep.equal([]);
+      });
+    });
   });
 
   describe('#filterByTag', () => {
@@ -144,6 +180,24 @@ describe('Hf', () => {
         expect(hf.filterByTag(hfObj, 'link')).to.be.length(2);
       });
     });
+
+    context('when the object given is undefined', () => {
+      it('returns each transition for that given tag', () => {
+        expect(hf.filterByTag(undefined, 'link')).to.deep.equal([]);
+      });
+    });
+
+    context('when the value given is not an object', () => {
+      it('returns each transition for that given tag', () => {
+        expect(hf.filterByTag('foobar', 'link')).to.deep.equal([]);
+      });
+    });
+
+    context('when the value given is null', () => {
+      it('returns each transition for that given tag', () => {
+        expect(hf.filterByTag(null, 'link')).to.deep.equal([]);
+      });
+    });
   });
 
   describe('#attributes', () => {
@@ -164,6 +218,24 @@ describe('Hf', () => {
 
       it('returns each transition for that given tag', () => {
         expect(hf.attributes(hfObj)).to.deep.equal({});
+      });
+    });
+
+    context('when the object given is undefined', () => {
+      it('returns each transition for that given tag', () => {
+        expect(hf.attributes(undefined)).to.deep.equal({});
+      });
+    });
+
+    context('when the value given is not an object', () => {
+      it('returns each transition for that given tag', () => {
+        expect(hf.attributes('foobar')).to.deep.equal({});
+      });
+    });
+
+    context('when the value given is null', () => {
+      it('returns each transition for that given tag', () => {
+        expect(hf.attributes(null)).to.deep.equal({});
       });
     });
   });
@@ -191,6 +263,18 @@ describe('Hf', () => {
         expect(hf.transitions(hfObj)).to.deep.equal([]);
       });
     });
+
+    context('when the value given is not an object', () => {
+      it('returns each transition for that given tag', () => {
+        expect(hf.transitions('foobar')).to.deep.equal([]);
+      });
+    });
+
+    context('when the value given is null', () => {
+      it('returns each transition for that given tag', () => {
+        expect(hf.transitions(null)).to.deep.equal([]);
+      });
+    });
   });
 
   describe('#path', () => {
@@ -214,8 +298,28 @@ describe('Hf', () => {
     context('when given a path that does not exist', () => {
       const hfObj = {};
 
-      it('returns an empty array', () => {
+      it('returns undefined', () => {
         expect(hf.path(hfObj, ['attributes', 'foo', 0, 'bar', 1])).to.be.undefined;
+      });
+    });
+
+    context('when the value given is not an object', () => {
+      it('returns undefined', () => {
+        expect(hf.path('foobar', ['foo', 'bar'])).to.be.undefined;
+      });
+    });
+
+    context('when the value given is null', () => {
+      it('returns undefined', () => {
+        expect(hf.path(null, ['foo', 'bar'])).to.be.undefined;
+      });
+    });
+
+    context('when the steps given is null', () => {
+      const hfObj = {};
+
+      it('returns each transition for that given tag', () => {
+        expect(hf.path(hfObj, null)).to.be.undefined;
       });
     });
   });
