@@ -304,11 +304,26 @@ describe('Hf', () => {
       });
 
       context('when a default value is given', () => {
-        const hfObj = {};
-        const defaultValue = 'foobar';
+        context('when a non-null value is found', () => {
+          const hfObj = {};
+          const defaultValue = 'foobar';
 
-        it('returns the default value', () => {
-          expect(hf.path(hfObj, ['attributes', 'foo', 0, 'bar', 1], defaultValue)).to.equal(defaultValue);
+          it('returns the default value', () => {
+            expect(hf.path(hfObj, ['attributes', 'foo', 0, 'bar', 1], defaultValue)).to.equal(defaultValue);
+          });
+        });
+
+        context('when a null is found', () => {
+          const hfObj = {
+            attributes: {
+              foo: null,
+            },
+          };
+          const defaultValue = 'foobar';
+
+          it('returns the default value', () => {
+            expect(hf.path(hfObj, ['attributes', 'foo'], defaultValue)).to.be.null;
+          });
         });
       });
     });

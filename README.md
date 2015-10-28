@@ -69,6 +69,13 @@ hf.path({
 }, ['attributes', 'foo', 0, 'bar', 1]);
 ```
 
+The `path` function also takes a default value as the last argument in the event the path was not found.
+
+```js
+// Returns 'foobar'
+hf.path({}, ['attributes', 'foo', 0, 'bar', 1], 'foobar');
+```
+
 ## Example Hf object
 
 ```js

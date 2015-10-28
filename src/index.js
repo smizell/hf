@@ -37,7 +37,7 @@ export default {
     const firstStep = obj[steps[0]];
 
     // No need to continue if there isn't a match or if only one step
-    if (!firstStep) {
+    if (firstStep === undefined) {
       return defaultValue;
     } else if (firstStep && steps.length === 1) {
       return firstStep;
@@ -48,13 +48,14 @@ export default {
 
     // Loop through the remainder of steps, hence starting at 1
     for (let i = 1; i < steps.length; i++) {
-      if (value[steps[i]]) {
+      if (value[steps[i]] !== undefined) {
         value = value[steps[i]];
       } else {
         return undefined;
       }
     }
 
-    return value || defaultValue;
+    if (value !== undefined) return value;
+    return defaultValue;
   },
 };
