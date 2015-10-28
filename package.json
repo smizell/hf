@@ -1,0 +1,22 @@
+{
+  "name": "hy",
+  "version": "0.0.0",
+  "description": "Functions for working with Hy",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "peasant test",
+    "cover": "peasant cover",
+    "lint": "peasant lint",
+    "peasant": "peasant",
+    "ci": "peasant -s lint test build",
+    "prepublish": "npm run ci"
+  },
+  "author": "Stephen Mizell",
+  "license": "MIT",
+  "devDependencies": {
+    "peasant": "^0.5.2"
+  },
+  "dependencies": {
+    "babel-runtime": "^5.8.29"
+  }
+}
