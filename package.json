@@ -1,7 +1,7 @@
 {
-  "name": "hy",
-  "version": "0.0.0",
-  "description": "Functions for working with Hy",
+  "name": "hyp",
+  "version": "0.1.0",
+  "description": "Functions for working with Hyp",
   "main": "lib/index.js",
   "scripts": {
     "test": "peasant test",
@@ -14,6 +14,7 @@
   "author": "Stephen Mizell",
   "license": "MIT",
   "devDependencies": {
+    "chai": "^3.4.0",
     "peasant": "^0.5.2"
   },
   "dependencies": {
