@@ -27,7 +27,7 @@ export default {
     return obj.transitions || [];
   },
 
-  path: (obj = {}, steps = []) => {
+  path: (obj = {}, steps = [], defaultValue) => {
     if (!_.isObject(obj)) return undefined;
     if (!_.isArray(steps)) return undefined;
     if (steps.length === 0 ) return undefined;
@@ -36,23 +36,25 @@ export default {
     // Try to get the first step
     const firstStep = obj[steps[0]];
 
-    if (firstStep && steps.length === 1) {
+    // No need to continue if there isn't a match or if only one step
+    if (!firstStep) {
+      return defaultValue;
+    } else if (firstStep && steps.length === 1) {
       return firstStep;
-    } else if (firstStep) {
-      value = firstStep;
-    } else {
-      return undefined;
     }
 
-    // Loop through the remainder of steps
-    for (const step of steps.slice(1)) {
-      if (value[step]) {
-        value = value[step];
+    // We've made it this far, so we have an initial value
+    value = firstStep;
+
+    // Loop through the remainder of steps, hence starting at 1
+    for (let i = 1; i < steps.length; i++) {
+      if (value[steps[i]]) {
+        value = value[steps[i]];
       } else {
         return undefined;
       }
     }
 
-    return value;
+    return value || defaultValue;
   },
 };

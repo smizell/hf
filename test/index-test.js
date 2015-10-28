@@ -295,10 +295,21 @@ describe('Hf', () => {
     });
 
     context('when given a path that does not exist', () => {
-      const hfObj = {};
+      context('when a default value is not given', () => {
+        const hfObj = {};
 
-      it('returns undefined', () => {
-        expect(hf.path(hfObj, ['attributes', 'foo', 0, 'bar', 1])).to.be.undefined;
+        it('returns undefined', () => {
+          expect(hf.path(hfObj, ['attributes', 'foo', 0, 'bar', 1])).to.be.undefined;
+        });
+      });
+
+      context('when a default value is given', () => {
+        const hfObj = {};
+        const defaultValue = 'foobar';
+
+        it('returns the default value', () => {
+          expect(hf.path(hfObj, ['attributes', 'foo', 0, 'bar', 1], defaultValue)).to.equal(defaultValue);
+        });
       });
     });
 
