@@ -9,13 +9,15 @@ export default {
     let link;
 
     // Returns the embedded transition first if it finds it
-    for (const transition of transitions) {
+    for (let i = 0; i < transitions.length; i++) {
+      let transition = transitions[i];
       if (_.includes(transition.rels, rel)) {
         if (transition.tag === 'embed') return transition;
         if (transition.tag === 'link' && !link) link = transition;
       }
     }
 
+    // If a link was not found above, this will be undefined
     return link;
   },
 
