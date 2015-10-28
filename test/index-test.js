@@ -70,20 +70,35 @@ describe('Hf', () => {
     });
 
     context('when the object given is undefined', () => {
-      it('returns each transition for that given tag', () => {
+      it('returns undefined', () => {
         expect(hf.getByRel(undefined, 'next')).to.be.undefined;
       });
     });
 
     context('when the value given is not an object', () => {
-      it('returns each transition for that given tag', () => {
+      it('returns undefined', () => {
         expect(hf.getByRel('foobar', 'next')).to.be.undefined;
       });
     });
 
     context('when the value given is null', () => {
-      it('returns each transition for that given tag', () => {
+      it('returns undefined', () => {
         expect(hf.getByRel(null, 'next')).to.be.undefined;
+      });
+    });
+
+    context('when the rel is not a string', () => {
+      const hfObj = {
+        transitions: [
+          {
+            tag: 'link',
+            rels: [1],
+          },
+        ],
+      };
+
+      it('returns each transition for that given tag', () => {
+        expect(hf.getByRel(hfObj, 1)).to.be.undefined;
       });
     });
   });
@@ -162,6 +177,21 @@ describe('Hf', () => {
         expect(hf.filterByRel(null, 'next')).to.deep.equal([]);
       });
     });
+
+    context('when the rel is not a string', () => {
+      const hfObj = {
+        transitions: [
+          {
+            tag: 'link',
+            rels: [1],
+          },
+        ],
+      };
+
+      it('returns each transition for that given tag', () => {
+        expect(hf.filterByRel(hfObj, 1)).to.deep.equal([]);
+      });
+    });
   });
 
   describe('#filterByTag', () => {
@@ -219,6 +249,20 @@ describe('Hf', () => {
     context('when the value given is null', () => {
       it('returns each transition for that given tag', () => {
         expect(hf.filterByTag(null, 'link')).to.deep.equal([]);
+      });
+    });
+
+    context('when the rel is not a string', () => {
+      const hfObj = {
+        transitions: [
+          {
+            tag: 1,
+          },
+        ],
+      };
+
+      it('returns each transition for that given tag', () => {
+        expect(hf.filterByTag(hfObj, 1)).to.deep.equal([]);
       });
     });
   });

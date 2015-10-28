@@ -4,16 +4,19 @@ import transitionsFn from './transitions';
 export default {
   getByRel: (obj = {}, rel) => {
     if (!_.isObject(obj)) return undefined;
+    if (!_.isString(rel)) return undefined;
     return transitionsFn.getByRel(obj.transitions, rel);
   },
 
   filterByRel: (value = {}, rel) => {
+    if (!_.isString(rel)) return [];
     if (_.isArray(value)) return transitionsFn.filterByRel(value, rel);
     if (_.isObject(value)) return transitionsFn.filterByRel(value.transitions, rel);
     return [];
   },
 
   filterByTag: (value = {}, tag) => {
+    if (!_.isString(tag)) return [];
     if (_.isArray(value)) return transitionsFn.filterByTag(value, tag);
     if (_.isObject(value)) return transitionsFn.filterByTag(value.transitions, tag);
     return [];

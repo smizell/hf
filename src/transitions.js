@@ -10,7 +10,7 @@ export default {
 
     // Returns the embedded transition first if it finds it
     for (const transition of transitions) {
-      if (_.include(transition.rels, rel)) {
+      if (_.includes(transition.rels, rel)) {
         if (transition.tag === 'embed') return transition;
         if (transition.tag === 'link' && !link) link = transition;
       }
@@ -21,7 +21,7 @@ export default {
 
   filterByRel: (transitions = [], rel) => {
     return transitions.filter(transition => {
-      return _.include(transition.rels, rel);
+      return _.includes(transition.rels, rel);
     });
   },
 
