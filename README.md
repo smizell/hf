@@ -7,7 +7,6 @@ Hf is a library for working with [Hf representations](#hf-data-structure). It pr
 - [Overview](#overview)
 - [Install](#install)
 - [Usage](#usage)
-  - [`hf.hasRel`](#hfhasrel)
   - [`hf.getByRel`](#hfgetbyrel)
   - [`hf.filterByRel`](#hffilterbyrel)
   - [`hf.filterByTag`](#hffilterbytag)
@@ -214,12 +213,12 @@ let hfObj = {
   transitions: [
     {
       tag: 'link',
-      rels: ['orders'],
+      rel: 'orders',
       href: '/user/1/orders'
     },
     {
       tag: 'form',
-      rels: ['update'],
+      rel: 'update',
       href: '/user/1',
       method: 'POST',
       data: {
@@ -241,13 +240,13 @@ let hfObj = {
 
 - tag: link (string, fixed) - Link classifier
 - href (string) - Resolvable URL
-- rels (array) - Array of link relations
+- rel (string) - Link relations
 
 ### Form (Link)
 
 - tag: form (string, fixed) - Form classifier
 - method (string) - HTTP method for the form
-- encType (array[string]) - Media type to encode form in
+- encType (string) - Media type for encoding request
 - data (object) - Data object for form
 
 ### Embed (Hf, Link)

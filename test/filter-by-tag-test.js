@@ -7,17 +7,17 @@ describe('Hf #filterByTag', () => {
       transitions: [
         {
           tag: 'link',
-          rels: ['last'],
+          rel: 'last',
           href: '/user/100',
         },
         {
           tag: 'embed',
-          rels: ['next'],
+          rel: 'next',
           href: '/user/2',
         },
         {
           tag: 'link',
-          rels: ['next'],
+          rel: 'next',
           href: '/user/2',
         },
       ],

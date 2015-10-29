@@ -7,7 +7,7 @@ describe('Hf #transitions', () => {
       transitions: [
         {
           tag: 'link',
-          rels: ['next'],
+          rel: 'next',
         },
       ],
     };
