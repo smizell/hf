@@ -1,8 +1,11 @@
 import _ from './utils';
 
 export default {
-  all: (obj = {}) => {
-    return obj.transitions || [];
+  hasRel: (transitions = [], rel) => {
+    for (let i = 0; i < transitions.length; i++) {
+      if (_.includes(transitions[i].rels, rel)) return true;
+    }
+    return false;
   },
 
   getByRel: (transitions = [], rel) => {
