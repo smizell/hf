@@ -3,7 +3,7 @@ import _ from './utils';
 export default {
   hasRel: (transitions = [], rel) => {
     for (let i = 0; i < transitions.length; i++) {
-      if (_.includes(transitions[i].rels, rel)) return true;
+      if (transitions[i].rel ===rel) return true;
     }
     return false;
   },
@@ -13,7 +13,7 @@ export default {
 
     // Returns the embedded transition first if it finds it
     for (let i = 0; i < transitions.length; i++) {
-      if (_.includes(transitions[i].rels, rel)) {
+      if (transitions[i].rel === rel) {
         if (transitions[i].tag === 'embed') return transitions[i];
         if (transitions[i].tag === 'link' && !link) link = transitions[i];
       }
@@ -25,7 +25,7 @@ export default {
 
   filterByRel: (transitions = [], rel) => {
     return transitions.filter(transition => {
-      return _.includes(transition.rels, rel);
+      return transition.rel === rel;
     });
   },
 

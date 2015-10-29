@@ -17,7 +17,7 @@ describe('Hf #getByRel', () => {
       transitions: [
         {
           tag: 'link',
-          rels: ['next'],
+          rel: 'next',
         },
       ],
     };
@@ -32,7 +32,7 @@ describe('Hf #getByRel', () => {
       transitions: [
         {
           tag: 'embed',
-          rels: ['next'],
+          rel: 'next',
         },
       ],
     };
@@ -47,17 +47,17 @@ describe('Hf #getByRel', () => {
       transitions: [
         {
           tag: 'link',
-          rels: ['next'],
+          rel: 'next',
           href: '/user/1',
         },
         {
           tag: 'embed',
-          rels: ['next'],
+          rel: 'next',
           href: '/user/2',
         },
         {
           tag: 'embed',
-          rels: ['last'],
+          rel: 'last',
           href: '/user/10',
         },
       ],
@@ -91,7 +91,7 @@ describe('Hf #getByRel', () => {
       transitions: [
         {
           tag: 'link',
-          rels: [1],
+          rel: 1,
         },
       ],
     };
