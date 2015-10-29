@@ -6,7 +6,7 @@ describe('Hf #hasRel', () => {
     transitions: [
       {
         tag: 'link',
-        rels: ['next'],
+        rel: 'next',
         href: '/user/2',
       },
     ],
@@ -41,7 +41,7 @@ describe('Hf #hasRel', () => {
       transitions: [
         {
           tag: 'link',
-          rels: [1],
+          rel: 1,
         },
       ],
     };

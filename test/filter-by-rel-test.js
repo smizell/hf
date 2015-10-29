@@ -7,12 +7,12 @@ describe('Hf #filterByRel', () => {
       transitions: [
         {
           tag: 'link',
-          rels: ['last'],
+          rel: 'last',
           href: '/user/100',
         },
         {
           tag: 'link',
-          rels: ['next'],
+          rel: 'next',
           href: '/user/2',
         },
       ],
@@ -41,12 +41,12 @@ describe('Hf #filterByRel', () => {
       transitions: [
         {
           tag: 'link',
-          rels: ['last'],
+          rel: 'last',
           href: '/user/100',
         },
         {
           tag: 'link',
-          rels: ['next'],
+          rel: 'next',
           href: '/user/2',
         },
       ],
@@ -81,7 +81,7 @@ describe('Hf #filterByRel', () => {
       transitions: [
         {
           tag: 'link',
-          rels: [1],
+          rel: 1,
         },
       ],
     };
