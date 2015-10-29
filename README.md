@@ -7,6 +7,7 @@ Hf is a library for working with [Hf representations](#hf-data-structure). It pr
 - [Overview](#overview)
 - [Install](#install)
 - [Usage](#usage)
+  - [`hf.hasRel`](#hfhasrel)
   - [`hf.getByRel`](#hfgetbyrel)
   - [`hf.filterByRel`](#hffilterbyrel)
   - [`hf.filterByTag`](#hffilterbytag)
