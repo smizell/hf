@@ -2,6 +2,13 @@ import _ from './utils';
 import transitionsFn from './transitions';
 
 export default {
+  hasRel: (value = {}, rel) => {
+    if (!_.isString(rel)) return false;
+    if (_.isArray(value)) return transitionsFn.hasRel(value, rel);
+    if (_.isObject(value)) return transitionsFn.hasRel(value.transitions, rel);
+    return false;
+  },
+
   getByRel: (obj = {}, rel) => {
     if (!_.isObject(obj)) return undefined;
     if (!_.isString(rel)) return undefined;

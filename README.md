@@ -128,6 +128,15 @@ npm install hf --save
 
 ## Usage
 
+### `hf.hasRel`
+
+Takes an Hf object or transitions array and a `rel` and returns true if the rel is found and false if not.
+
+```js
+// returns true if next is in the document
+hf.hasRel(hfObj, 'next');
+```
+
 ### `hf.getByRel`
 
 Takes an Hf object and a `rel` and returns the first transitions it finds. If there is an `embed` transition, it returns that before any `link` transition.

@@ -1,6 +1,6 @@
 {
   "name": "hf",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Functions for working with Hf representations",
   "main": "lib/index.js",
   "scripts": {
