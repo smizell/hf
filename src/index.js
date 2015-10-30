@@ -9,6 +9,13 @@ export default {
     return false;
   },
 
+  getBy: (value = {}, conditions = {}) => {
+    if (!_.isObject(conditions)) return undefined;
+    if (_.isArray(value)) return transitionsFn.getBy(value, conditions);
+    if (_.isObject(value)) return transitionsFn.getBy(value.transitions, conditions);
+    return undefined;
+  },
+
   getByRel: (obj = {}, rel) => {
     if (!_.isObject(obj)) return undefined;
     if (!_.isString(rel)) return undefined;
