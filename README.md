@@ -18,6 +18,7 @@ Hf is a library for working with [Hf representations](#hf-data-structure). It pr
 		- [`hf.getBy`](#hfgetby)
 		- [`hf.filterBy`](#hffilterby)
 		- [`hf.metaAttributes`](#hfmetaattributes)
+		- [`hf.metaLinks`](#hfmetalinks)
 		- [`hf.attributes`](#hfattributes)
 		- [`hf.transitions`](#hftransitions)
 		- [`hf.path`](#hfpath)
@@ -191,8 +192,17 @@ hf.filterBy(hfObj, function(transition) {
 Takes an Hf object and returns the meta attributes if there are any or an empty object. You use this instead of `hfObj.meta.attributes` because this returns an empty object even if `meta.attributes` isn't found.
 
 ```js
-// returns an attributes object
+// returns a meta attributes object
 hf.metaAttributes(hfObj);
+```
+
+### `hf.metaLinks`
+
+Takes an Hf object and returns the meta links if there are any or an empty array. You use this instead of `hfObj.meta.links` because this returns an empty object even if `meta.links` isn't found.
+
+```js
+// returns a meta links array
+hf.metaLinks(hfObj);
 ```
 
 ### `hf.attributes`

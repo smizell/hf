@@ -26,13 +26,13 @@ describe('Hf #transitions', () => {
   });
 
   context('when the value given is not an object', () => {
-    it('returns each transition for that given tag', () => {
+    it('returns an empty array', () => {
       expect(hf.transitions('foobar')).to.deep.equal([]);
     });
   });
 
   context('when the value given is null', () => {
-    it('returns each transition for that given tag', () => {
+    it('returns an empty array', () => {
       expect(hf.transitions(null)).to.deep.equal([]);
     });
   });
