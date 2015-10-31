@@ -274,6 +274,11 @@ let hfObj = {
 - encType (string) - Media type for encoding request
 - data (object) - Data object for form
 
+### Query (Link)
+
+- tag: query (string, fixed) - Query identifier
+- params (object) - Object for query parameters
+
 ### Embed (Hf, Link)
 
 - tag: embed (string, fixed) - Embed classifier
