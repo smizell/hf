@@ -7,9 +7,8 @@ Hf is a library for working with [Hf representations](#hf-data-structure). It pr
 - [Overview](#overview)
 - [Install](#install)
 - [Usage](#usage)
-  - [`hf.getByRel`](#hfgetbyrel)
-  - [`hf.filterByRel`](#hffilterbyrel)
-  - [`hf.filterByTag`](#hffilterbytag)
+  - [`hf.getBy`](#hfgetby)
+  - [`hf.filterBy`](#hffilterby)
   - [`hf.attributes`](#hfattributes)
   - [`hf.transitions`](#hftransitions)
   - [`hf.path`](#hfpath)
@@ -152,7 +151,7 @@ hf.has(hfObj, 'next');
 
 ### `hf.getBy`
 
-Takes an Hf object or transitions array and a conditions object and returns the first transitions it finds.
+Takes an Hf object or transitions array as the first argument and a conditions object or function as the second argument. It returns the first matching transition or `undefined`.
 
 ```js
 // returns first transition with rel next and tag link
@@ -160,11 +159,16 @@ hf.getBy(hfObj, {rel: 'next', tag: 'link'});
 
 // returns first transition with rel next regardless of tag
 hf.getBy(hfObj, {rel: 'next'});
+
+// returns first transition with rel next
+hf.getBy(hfObj, function(transition) {
+  return transition.rel === 'next';
+});
 ```
 
 ### `hf.filterBy`
 
-Takes an Hf object or transitions array and a conditions object and returns all transitions with matching conditions.
+Takes an Hf object or transitions array as the first argument and a conditions object or function as the second argument. It returns all transitions with matching conditions or an empty array.
 
 ```js
 // returns all transitions with rel next and tag link
@@ -172,6 +176,11 @@ hf.filterBy(hfObj, {rel: 'next', tag: 'link'});
 
 // returns all transitions with rel next regardless of tag
 hf.filterBy(hfObj, {rel: 'next'});
+
+// returns all transitions with rel next
+hf.filterBy(hfObj, function(transition) {
+  return transition.rel === 'next';
+});
 ```
 
 ### `hf.attributes`

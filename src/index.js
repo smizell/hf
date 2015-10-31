@@ -10,14 +10,14 @@ export default {
   },
 
   getBy: (value = {}, conditions = {}) => {
-    if (!_.isObject(conditions)) return undefined;
+    if (!_.isObject(conditions) && typeof (conditions) !== 'function') return undefined;
     if (_.isArray(value)) return transitionsFn.getBy(value, conditions);
     if (_.isObject(value)) return transitionsFn.getBy(value.transitions, conditions);
     return undefined;
   },
 
   filterBy: (value = {}, conditions = {}) => {
-    if (!_.isObject(conditions)) return [];
+    if (!_.isObject(conditions) && typeof (conditions) !== 'function') return [];
     if (_.isArray(value)) return transitionsFn.filterBy(value, conditions);
     if (_.isObject(value)) return transitionsFn.filterBy(value.transitions, conditions);
     return [];

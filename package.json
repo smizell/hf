@@ -1,11 +1,11 @@
 {
   "name": "hf",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Functions for working with Hf representations",
   "main": "lib/index.js",
   "scripts": {
     "test": "peasant test",
-    "watch": "nodemon --exec \"npm test\"",
+    "develop": "nodemon --exec \"npm test\"",
     "cover": "peasant cover",
     "lint": "peasant lint",
     "peasant": "peasant",
