@@ -35,6 +35,12 @@ export default {
     });
   },
 
+  filterBy: (transitions = [], conditions) => {
+    return transitions.filter(transition => {
+      return _.isMatch(transition, conditions);
+    });
+  },
+
   filterByTag: (transitions = [], tag) => {
     return transitions.filter(transition => {
       return transition.tag === tag;

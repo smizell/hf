@@ -22,6 +22,13 @@ export default {
     return transitionsFn.getByRel(obj.transitions, rel);
   },
 
+  filterBy: (value = {}, conditions = {}) => {
+    if (!_.isObject(conditions)) return [];
+    if (_.isArray(value)) return transitionsFn.filterBy(value, conditions);
+    if (_.isObject(value)) return transitionsFn.filterBy(value.transitions, conditions);
+    return [];
+  },
+
   filterByRel: (value = {}, rel) => {
     if (!_.isString(rel)) return [];
     if (_.isArray(value)) return transitionsFn.filterByRel(value, rel);
