@@ -4,16 +4,33 @@
 
 Hf is a library for working with [Hf representations](#hf-data-structure). It provides functions that take regular JavaScript objects rather than using constructors and prototypes.
 
-- [Overview](#overview)
-- [Install](#install)
-- [Usage](#usage)
-  - [`hf.getBy`](#hfgetby)
-  - [`hf.filterBy`](#hffilterby)
-  - [`hf.attributes`](#hfattributes)
-  - [`hf.transitions`](#hftransitions)
-  - [`hf.path`](#hfpath)
-- [Example Hf object](#example-hf-object)
-- [Hf Data Structure](#hf-data-structure)
+<!-- TOC depth:3 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+- [Hf](#hf)
+	- [Overview](#overview)
+		- [Problems Using JSON](#problems-using-json)
+		- [Design of Hf](#design-of-hf)
+		- [A Companion Hypermedia Format](#a-companion-hypermedia-format)
+		- [Functions Acting on Data](#functions-acting-on-data)
+	- [Install](#install)
+	- [Usage](#usage)
+		- [`hf.has`](#hfhas)
+		- [`hf.getBy`](#hfgetby)
+		- [`hf.filterBy`](#hffilterby)
+		- [`hf.metaAttributes`](#hfmetaattributes)
+		- [`hf.metaLinks`](#hfmetalinks)
+		- [`hf.attributes`](#hfattributes)
+		- [`hf.transitions`](#hftransitions)
+		- [`hf.path`](#hfpath)
+	- [Example Hf object](#example-hf-object)
+	- [Hf Data Structure](#hf-data-structure)
+		- [Hf (object)](#hf-object)
+		- [Link (object)](#link-object)
+		- [Form (Link)](#form-link)
+		- [Query (Link)](#query-link)
+		- [Embed (Hf, Link)](#embed-hf-link)
+	- [Developing and Contributing](#developing-and-contributing)
+<!-- /TOC -->
 
 ## Overview
 
@@ -125,19 +142,6 @@ This function will return `baz` if the value is there, but if any step of the pa
 npm install hf --save
 ```
 
-## Testing
-
-```sh
-npm test
-```
-
-If you install nodemon, you can run `npm run watch`.
-
-```sh
-npm install nodemon -g
-npm run watch
-```
-
 ## Usage
 
 ### `hf.has`
@@ -146,7 +150,7 @@ Takes an Hf object or transitions array and a conditions object and returns true
 
 ```js
 // returns true if next is in the document
-hf.has(hfObj, 'next');
+hf.has(hfObj, {rel: 'next'});
 ```
 
 ### `hf.getBy`
@@ -181,6 +185,24 @@ hf.filterBy(hfObj, {rel: 'next'});
 hf.filterBy(hfObj, function(transition) {
   return transition.rel === 'next';
 });
+```
+
+### `hf.metaAttributes`
+
+Takes an Hf object and returns the meta attributes if there are any or an empty object. You use this instead of `hfObj.meta.attributes` because this returns an empty object even if `meta.attributes` isn't found.
+
+```js
+// returns a meta attributes object
+hf.metaAttributes(hfObj);
+```
+
+### `hf.metaLinks`
+
+Takes an Hf object and returns the meta links if there are any or an empty array. You use this instead of `hfObj.meta.links` because this returns an empty object even if `meta.links` isn't found.
+
+```js
+// returns a meta links array
+hf.metaLinks(hfObj);
 ```
 
 ### `hf.attributes`
@@ -226,6 +248,14 @@ hf.path({}, ['attributes', 'foo', 0, 'bar', 1], 'foobar');
 
 ```js
 let hfObj = {
+  meta: {
+    links: [
+      {
+        rel: 'profile',
+        href: 'http://example.com/profile'
+      }
+    ]
+  },
   attribute: {
     name: 'John Doe'
   },
@@ -252,6 +282,9 @@ let hfObj = {
 
 ### Hf (object)
 
+- meta (object)
+    - attributes (object) - Meta attributes for a given resource
+    - links (array[Link]) - Meta links for a given resource
 - attributes (object) - Attributes for a given resource
 - transitions (array[Link, Form, Embed]) - Transitions from state
 
@@ -276,3 +309,20 @@ let hfObj = {
 ### Embed (Hf, Link)
 
 - tag: embed (string, fixed) - Embed classifier
+
+## Developing and Contributing
+
+To test, you can run:
+
+```sh
+npm test
+```
+
+If you install nodemon, you can run `npm run develop`.
+
+```sh
+npm install nodemon -g
+npm run develop
+```
+
+Contributions are welcome! Please open a pull request.

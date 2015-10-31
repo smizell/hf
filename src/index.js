@@ -23,6 +23,18 @@ export default {
     return [];
   },
 
+  metaAttributes: (obj = {}) => {
+    if (!_.isObject(obj)) return {};
+    if (!_.isObject(obj.meta)) return {};
+    return obj.meta.attributes || {};
+  },
+
+  metaLinks: (obj = {}) => {
+    if (!_.isObject(obj)) return [];
+    if (!_.isObject(obj.meta)) return [];
+    return obj.meta.links || [];
+  },
+
   attributes: (obj = {}) => {
     if (!_.isObject(obj)) return {};
     return obj.attributes || {};
