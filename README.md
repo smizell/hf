@@ -141,13 +141,13 @@ npm run watch
 
 ## Usage
 
-### `hf.hasRel`
+### `hf.has`
 
-Takes an Hf object or transitions array and a `rel` and returns true if the rel is found and false if not.
+Takes an Hf object or transitions array and a conditions object and returns true if it finds at least one matching transition.
 
 ```js
 // returns true if next is in the document
-hf.hasRel(hfObj, 'next');
+hf.has(hfObj, 'next');
 ```
 
 ### `hf.getBy`
@@ -162,15 +162,6 @@ hf.getBy(hfObj, {rel: 'next', tag: 'link'});
 hf.getBy(hfObj, {rel: 'next'});
 ```
 
-### `hf.getByRel`
-
-Takes an Hf object and a `rel` and returns the first transitions it finds. If there is an `embed` transition, it returns that before any `link` transition.
-
-```js
-// returns either undefined or a transition object
-hf.getByRel(hfObj, 'next');
-```
-
 ### `hf.filterBy`
 
 Takes an Hf object or transitions array and a conditions object and returns all transitions with matching conditions.
@@ -181,24 +172,6 @@ hf.filterBy(hfObj, {rel: 'next', tag: 'link'});
 
 // returns all transitions with rel next regardless of tag
 hf.filterBy(hfObj, {rel: 'next'});
-```
-
-### `hf.filterByRel`
-
-Takes an Hf object or transitions array and a `rel` and returns an array of transitions with a matching `rel`.
-
-```js
-// returns an array of transition objects
-hf.filterByRel(hfObj, 'next');
-```
-
-### `hf.filterByTag`
-
-Takes an Hf object or transitions array and a `tag` and returns an array of transitions with a matching `tag`. The `tag` argument can be either `link`, `form`, or `embed`.
-
-```js
-// returns an array of transition objects
-hf.filterByRel(hfObj, 'link');
 ```
 
 ### `hf.attributes`

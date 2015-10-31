@@ -2,10 +2,10 @@ import _ from './utils';
 import transitionsFn from './transitions';
 
 export default {
-  hasRel: (value = {}, rel) => {
-    if (!_.isString(rel)) return false;
-    if (_.isArray(value)) return transitionsFn.hasRel(value, rel);
-    if (_.isObject(value)) return transitionsFn.hasRel(value.transitions, rel);
+  has: (value = {}, conditions = {}) => {
+    if (!_.isObject(conditions)) return false;
+    if (_.isArray(value)) return transitionsFn.has(value, conditions);
+    if (_.isObject(value)) return transitionsFn.has(value.transitions, conditions);
     return false;
   },
 

@@ -1,9 +1,9 @@
 import _ from './utils';
 
 export default {
-  hasRel: (transitions = [], rel) => {
+  has: (transitions = [], conditions) => {
     for (let i = 0; i < transitions.length; i++) {
-      if (transitions[i].rel === rel) return true;
+      if (_.isMatch(transitions[i], conditions)) return true;
     }
     return false;
   },
