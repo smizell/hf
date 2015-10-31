@@ -62,6 +62,36 @@ describe('Hf #getBy', () => {
     });
   });
 
+  context('when the value given is a function', () => {
+    const hfObj = {
+      transitions: [
+        {
+          tag: 'link',
+          rel: 'last',
+          href: '/user/100',
+        },
+        {
+          tag: 'embed',
+          rel: 'next',
+          href: '/user/2',
+          attributes: {
+            foo: 'bar',
+          },
+        },
+        {
+          tag: 'link',
+          rel: 'next',
+          href: '/user/2',
+        },
+      ],
+    };
+
+    it('returns the correct result', () => {
+      const result = hf.getBy(hfObj, (transition) => hf.attributes(transition).foo === 'bar');
+      expect(result).to.deep.equal(hfObj.transitions[1]);
+    });
+  });
+
   context('when the value given is not an object', () => {
     it('returns undefined', () => {
       expect(hf.getBy('foobar', {rel: 'next', tag: 'embed'})).to.be.undefined;

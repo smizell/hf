@@ -103,6 +103,36 @@ describe('Hf #filterBy', () => {
     });
   });
 
+  context('when the value given is a function', () => {
+    const hfObj = {
+      transitions: [
+        {
+          tag: 'link',
+          rel: 'last',
+          href: '/user/100',
+        },
+        {
+          tag: 'embed',
+          rel: 'next',
+          href: '/user/2',
+          attributes: {
+            foo: 'bar',
+          },
+        },
+        {
+          tag: 'link',
+          rel: 'next',
+          href: '/user/2',
+        },
+      ],
+    };
+
+    it('returns the correct results', () => {
+      const results = hf.filterBy(hfObj, (transition) => hf.attributes(transition).foo === 'bar');
+      expect(results).to.deep.equal([hfObj.transitions[1]]);
+    });
+  });
+
   context('when the value given is not an object', () => {
     it('returns each transition for that given tag', () => {
       expect(hf.filterBy('foobar', {rel: 'next'})).to.deep.equal([]);
