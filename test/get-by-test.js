@@ -1,14 +1,14 @@
 import {expect} from 'chai';
 import hf from '../src/index';
 
-describe('Hf #getByRel', () => {
+describe('Hf #getBy', () => {
   context('when there are no matches', () => {
     const hfObj = {
       transitions: [],
     };
 
     it('returns undefined', () => {
-      expect(hf.getByRel(hfObj, 'next')).to.be.undefined;
+      expect(hf.getBy(hfObj, {rel: 'next'})).to.be.undefined;
     });
   });
 
@@ -23,70 +23,73 @@ describe('Hf #getByRel', () => {
     };
 
     it('returns the link object', () => {
-      expect(hf.getByRel(hfObj, 'next')).to.deep.equal(hfObj.transitions[0]);
+      expect(hf.getBy(hfObj, {rel: 'next'})).to.deep.equal(hfObj.transitions[0]);
     });
   });
 
-  context('when there is an embed', () => {
-    const hfObj = {
-      transitions: [
-        {
-          tag: 'embed',
-          rel: 'next',
-        },
-      ],
-    };
-
-    it('returns the embed object', () => {
-      expect(hf.getByRel(hfObj, 'next')).to.deep.equal(hfObj.transitions[0]);
-    });
-  });
-
-  context('when there is a link and embed', () => {
+  context('when looking up an embed', () => {
     const hfObj = {
       transitions: [
         {
           tag: 'link',
           rel: 'next',
-          href: '/user/1',
         },
         {
           tag: 'embed',
           rel: 'next',
-          href: '/user/2',
+          attributes: {
+            foo: 'bar',
+          },
         },
         {
           tag: 'embed',
-          rel: 'last',
-          href: '/user/10',
+          rel: 'next',
+          attributes: {
+            foo: 'baz',
+          },
         },
       ],
     };
 
-    it('returns the embed object', () => {
-      expect(hf.getByRel(hfObj, 'next')).to.deep.equal(hfObj.transitions[1]);
+    it('returns the first embed object', () => {
+      expect(hf.getBy(hfObj, {rel: 'next', tag: 'embed'})).to.deep.equal(hfObj.transitions[1]);
     });
   });
 
   context('when the object given is undefined', () => {
     it('returns undefined', () => {
-      expect(hf.getByRel(undefined, 'next')).to.be.undefined;
+      expect(hf.getBy(undefined, {rel: 'next', tag: 'embed'})).to.be.undefined;
     });
   });
 
   context('when the value given is not an object', () => {
     it('returns undefined', () => {
-      expect(hf.getByRel('foobar', 'next')).to.be.undefined;
+      expect(hf.getBy('foobar', {rel: 'next', tag: 'embed'})).to.be.undefined;
     });
   });
 
   context('when the value given is null', () => {
     it('returns undefined', () => {
-      expect(hf.getByRel(null, 'next')).to.be.undefined;
+      expect(hf.getBy(null, {rel: 'next', tag: 'embed'})).to.be.undefined;
     });
   });
 
-  context('when the rel is not a string', () => {
+  context('when the value given is an array', () => {
+    const hfObj = {
+      transitions: [
+        {
+          tag: 'link',
+          rel: 'next',
+        },
+      ],
+    };
+
+    it('returns the link object', () => {
+      expect(hf.getBy(hfObj.transitions, {rel: 'next'})).to.deep.equal(hfObj.transitions[0]);
+    });
+  });
+
+  context('when the rel is not an object', () => {
     const hfObj = {
       transitions: [
         {
@@ -97,7 +100,7 @@ describe('Hf #getByRel', () => {
     };
 
     it('returns undefined', () => {
-      expect(hf.getByRel(hfObj, 1)).to.be.undefined;
+      expect(hf.getBy(hfObj, 1)).to.be.undefined;
     });
   });
 });

@@ -126,6 +126,19 @@ This function will return `baz` if the value is there, but if any step of the pa
 npm install hf --save
 ```
 
+## Testing
+
+```sh
+npm test
+```
+
+If you install nodemon, you can run `npm run watch`.
+
+```sh
+npm install nodemon -g
+npm run watch
+```
+
 ## Usage
 
 ### `hf.hasRel`
@@ -135,6 +148,18 @@ Takes an Hf object or transitions array and a `rel` and returns true if the rel 
 ```js
 // returns true if next is in the document
 hf.hasRel(hfObj, 'next');
+```
+
+### `hf.getBy`
+
+Takes an Hf object or transitions array and a conditions object and returns the first transitions it finds.
+
+```js
+// returns first transition with rel next and tag link
+hf.getBy(hfObj, {rel: 'next', tag: 'link'});
+
+// returns first transition with rel next regardless of tag
+hf.getBy(hfObj, {rel: 'next'});
 ```
 
 ### `hf.getByRel`
