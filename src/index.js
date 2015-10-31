@@ -16,30 +16,10 @@ export default {
     return undefined;
   },
 
-  getByRel: (obj = {}, rel) => {
-    if (!_.isObject(obj)) return undefined;
-    if (!_.isString(rel)) return undefined;
-    return transitionsFn.getByRel(obj.transitions, rel);
-  },
-
   filterBy: (value = {}, conditions = {}) => {
     if (!_.isObject(conditions)) return [];
     if (_.isArray(value)) return transitionsFn.filterBy(value, conditions);
     if (_.isObject(value)) return transitionsFn.filterBy(value.transitions, conditions);
-    return [];
-  },
-
-  filterByRel: (value = {}, rel) => {
-    if (!_.isString(rel)) return [];
-    if (_.isArray(value)) return transitionsFn.filterByRel(value, rel);
-    if (_.isObject(value)) return transitionsFn.filterByRel(value.transitions, rel);
-    return [];
-  },
-
-  filterByTag: (value = {}, tag) => {
-    if (!_.isString(tag)) return [];
-    if (_.isArray(value)) return transitionsFn.filterByTag(value, tag);
-    if (_.isObject(value)) return transitionsFn.filterByTag(value.transitions, tag);
     return [];
   },
 
