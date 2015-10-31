@@ -171,6 +171,18 @@ Takes an Hf object and a `rel` and returns the first transitions it finds. If th
 hf.getByRel(hfObj, 'next');
 ```
 
+### `hf.filterBy`
+
+Takes an Hf object or transitions array and a conditions object and returns all transitions with matching conditions.
+
+```js
+// returns all transitions with rel next and tag link
+hf.filterBy(hfObj, {rel: 'next', tag: 'link'});
+
+// returns all transitions with rel next regardless of tag
+hf.filterBy(hfObj, {rel: 'next'});
+```
+
 ### `hf.filterByRel`
 
 Takes an Hf object or transitions array and a `rel` and returns an array of transitions with a matching `rel`.
