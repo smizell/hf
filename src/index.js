@@ -1,25 +1,24 @@
 import _ from './utils';
-import transitionsFn from './transitions';
 
 export default {
   has: (value = {}, conditions = {}) => {
     if (!_.isObject(conditions)) return false;
-    if (_.isArray(value)) return transitionsFn.has(value, conditions);
-    if (_.isObject(value)) return transitionsFn.has(value.transitions, conditions);
+    if (_.isArray(value)) return _.has(value, conditions);
+    if (_.isObject(value)) return _.has(value.transitions, conditions);
     return false;
   },
 
   getBy: (value = {}, conditions = {}) => {
     if (!_.isObject(conditions) && typeof (conditions) !== 'function') return undefined;
-    if (_.isArray(value)) return transitionsFn.getBy(value, conditions);
-    if (_.isObject(value)) return transitionsFn.getBy(value.transitions, conditions);
+    if (_.isArray(value)) return _.getBy(value, conditions);
+    if (_.isObject(value)) return _.getBy(value.transitions, conditions);
     return undefined;
   },
 
   filterBy: (value = {}, conditions = {}) => {
     if (!_.isObject(conditions) && typeof (conditions) !== 'function') return [];
-    if (_.isArray(value)) return transitionsFn.filterBy(value, conditions);
-    if (_.isObject(value)) return transitionsFn.filterBy(value.transitions, conditions);
+    if (_.isArray(value)) return _.filterBy(value, conditions);
+    if (_.isObject(value)) return _.filterBy(value.transitions, conditions);
     return [];
   },
 
