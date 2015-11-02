@@ -1,7 +1,7 @@
 import {expect} from 'chai';
 import hf from '../src/index';
 
-describe('Hf #filterBy', () => {
+describe('Hf #filter', () => {
   context('when given an matching condition', () => {
     const hfObj = {
       transitions: [
@@ -18,20 +18,20 @@ describe('Hf #filterBy', () => {
       ],
     };
 
-    function testFilterByRel(transitions) {
+    function testFilterRel(transitions) {
       expect(transitions[0]).to.deep.equal(hfObj.transitions[1]);
       expect(transitions.length).to.equal(1);
     }
 
     context('when given an Hf object', () => {
       it('returns the `next` links', () => {
-        testFilterByRel(hf.filterBy(hfObj, {rel: 'next'}));
+        testFilterRel(hf.filter(hfObj, {rel: 'next'}));
       });
     });
 
     context('when given a transitions array', () => {
       it('returns the `next` links', () => {
-        testFilterByRel(hf.filterBy(hfObj.transitions, {rel: 'next'}));
+        testFilterRel(hf.filter(hfObj.transitions, {rel: 'next'}));
       });
     });
   });
@@ -53,7 +53,7 @@ describe('Hf #filterBy', () => {
     };
 
     it('returns undefined', () => {
-      const transitions = hf.filterBy(hfObj, {rel: 'foobar'});
+      const transitions = hf.filter(hfObj, {rel: 'foobar'});
       expect(transitions.length).to.equal(0);
     });
   });
@@ -86,20 +86,20 @@ describe('Hf #filterBy', () => {
 
     context('when given an Hf object', () => {
       it('returns each transition for that given tag', () => {
-        testFilterByTag(hf.filterBy(hfObj, {tag: 'link'}));
+        testFilterByTag(hf.filter(hfObj, {tag: 'link'}));
       });
     });
 
     context('when given a transitions array', () => {
       it('returns each transition for that given tag', () => {
-        testFilterByTag(hf.filterBy(hfObj.transitions, {tag: 'link'}));
+        testFilterByTag(hf.filter(hfObj.transitions, {tag: 'link'}));
       });
     });
   });
 
   context('when the object given is undefined', () => {
     it('returns each transition for that given tag', () => {
-      expect(hf.filterBy(undefined, {rel: 'next'})).to.deep.equal([]);
+      expect(hf.filter(undefined, {rel: 'next'})).to.deep.equal([]);
     });
   });
 
@@ -128,20 +128,20 @@ describe('Hf #filterBy', () => {
     };
 
     it('returns the correct results', () => {
-      const results = hf.filterBy(hfObj, (transition) => hf.attributes(transition).foo === 'bar');
+      const results = hf.filter(hfObj, (transition) => hf.attributes(transition).foo === 'bar');
       expect(results).to.deep.equal([hfObj.transitions[1]]);
     });
   });
 
   context('when the value given is not an object', () => {
     it('returns each transition for that given tag', () => {
-      expect(hf.filterBy('foobar', {rel: 'next'})).to.deep.equal([]);
+      expect(hf.filter('foobar', {rel: 'next'})).to.deep.equal([]);
     });
   });
 
   context('when the value given is null', () => {
     it('returns each transition for that given tag', () => {
-      expect(hf.filterBy(null, {rel: 'next'})).to.deep.equal([]);
+      expect(hf.filter(null, {rel: 'next'})).to.deep.equal([]);
     });
   });
 
@@ -156,7 +156,7 @@ describe('Hf #filterBy', () => {
     };
 
     it('returns each transition for that given tag', () => {
-      expect(hf.filterBy(hfObj, 1)).to.deep.equal([]);
+      expect(hf.filter(hfObj, 1)).to.deep.equal([]);
     });
   });
 });

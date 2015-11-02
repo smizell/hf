@@ -8,17 +8,17 @@ export default {
     return false;
   },
 
-  getBy: (value = {}, conditions = {}) => {
+  find: (value = {}, conditions = {}) => {
     if (!_.isObject(conditions) && typeof (conditions) !== 'function') return undefined;
-    if (_.isArray(value)) return _.getBy(value, conditions);
-    if (_.isObject(value)) return _.getBy(value.transitions, conditions);
+    if (_.isArray(value)) return _.find(value, conditions);
+    if (_.isObject(value)) return _.find(value.transitions, conditions);
     return undefined;
   },
 
-  filterBy: (value = {}, conditions = {}) => {
+  filter: (value = {}, conditions = {}) => {
     if (!_.isObject(conditions) && typeof (conditions) !== 'function') return [];
-    if (_.isArray(value)) return _.filterBy(value, conditions);
-    if (_.isObject(value)) return _.filterBy(value.transitions, conditions);
+    if (_.isArray(value)) return _.filter(value, conditions);
+    if (_.isObject(value)) return _.filter(value.transitions, conditions);
     return [];
   },
 
@@ -44,5 +44,5 @@ export default {
     return obj.transitions || [];
   },
 
-  path: _.path,
+  get: _.get,
 };

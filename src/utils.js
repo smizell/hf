@@ -5,7 +5,7 @@ import isObject from 'lodash.isobject';
 import isArray from 'lodash.isarray';
 import includes from 'lodash.includes';
 import isMatch from 'lodash.ismatch';
-import path from 'lodash.get';
+import get from 'lodash.get';
 
 export default {
   find,
@@ -15,8 +15,5 @@ export default {
   isArray,
   isString,
   isMatch,
-  path,
-
-  getBy: find,
-  filterBy: filter,
+  get,
 };

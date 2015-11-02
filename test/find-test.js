@@ -8,7 +8,7 @@ describe('Hf #getBy', () => {
     };
 
     it('returns undefined', () => {
-      expect(hf.getBy(hfObj, {rel: 'next'})).to.be.undefined;
+      expect(hf.find(hfObj, {rel: 'next'})).to.be.undefined;
     });
   });
 
@@ -23,7 +23,7 @@ describe('Hf #getBy', () => {
     };
 
     it('returns the link object', () => {
-      expect(hf.getBy(hfObj, {rel: 'next'})).to.deep.equal(hfObj.transitions[0]);
+      expect(hf.find(hfObj, {rel: 'next'})).to.deep.equal(hfObj.transitions[0]);
     });
   });
 
@@ -52,13 +52,13 @@ describe('Hf #getBy', () => {
     };
 
     it('returns the first embed object', () => {
-      expect(hf.getBy(hfObj, {rel: 'next', tag: 'embed'})).to.deep.equal(hfObj.transitions[1]);
+      expect(hf.find(hfObj, {rel: 'next', tag: 'embed'})).to.deep.equal(hfObj.transitions[1]);
     });
   });
 
   context('when the object given is undefined', () => {
     it('returns undefined', () => {
-      expect(hf.getBy(undefined, {rel: 'next', tag: 'embed'})).to.be.undefined;
+      expect(hf.find(undefined, {rel: 'next', tag: 'embed'})).to.be.undefined;
     });
   });
 
@@ -87,20 +87,20 @@ describe('Hf #getBy', () => {
     };
 
     it('returns the correct result', () => {
-      const result = hf.getBy(hfObj, (transition) => hf.attributes(transition).foo === 'bar');
+      const result = hf.find(hfObj, (transition) => hf.attributes(transition).foo === 'bar');
       expect(result).to.deep.equal(hfObj.transitions[1]);
     });
   });
 
   context('when the value given is not an object', () => {
     it('returns undefined', () => {
-      expect(hf.getBy('foobar', {rel: 'next', tag: 'embed'})).to.be.undefined;
+      expect(hf.find('foobar', {rel: 'next', tag: 'embed'})).to.be.undefined;
     });
   });
 
   context('when the value given is null', () => {
     it('returns undefined', () => {
-      expect(hf.getBy(null, {rel: 'next', tag: 'embed'})).to.be.undefined;
+      expect(hf.find(null, {rel: 'next', tag: 'embed'})).to.be.undefined;
     });
   });
 
@@ -115,7 +115,7 @@ describe('Hf #getBy', () => {
     };
 
     it('returns the link object', () => {
-      expect(hf.getBy(hfObj.transitions, {rel: 'next'})).to.deep.equal(hfObj.transitions[0]);
+      expect(hf.find(hfObj.transitions, {rel: 'next'})).to.deep.equal(hfObj.transitions[0]);
     });
   });
 
@@ -130,7 +130,7 @@ describe('Hf #getBy', () => {
     };
 
     it('returns undefined', () => {
-      expect(hf.getBy(hfObj, 1)).to.be.undefined;
+      expect(hf.find(hfObj, 1)).to.be.undefined;
     });
   });
 });
