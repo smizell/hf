@@ -1,48 +1,17 @@
 import _ from './utils';
 
+function getTransitions(value) {
+  if (_.isArray(value)) return value;
+  if (_.isObject(value)) return value.transitions;
+}
+
 export default {
-  has: (value = {}, conditions = {}) => {
-    if (!_.isObject(conditions)) return false;
-    if (_.isArray(value)) return !!_.find(value, conditions);
-    if (_.isObject(value)) return !!_.find(value.transitions, conditions);
-    return false;
-  },
-
-  find: (value = {}, conditions = {}) => {
-    if (!_.isObject(conditions) && typeof (conditions) !== 'function') return undefined;
-    if (_.isArray(value)) return _.find(value, conditions);
-    if (_.isObject(value)) return _.find(value.transitions, conditions);
-    return undefined;
-  },
-
-  filter: (value = {}, conditions = {}) => {
-    if (!_.isObject(conditions) && typeof (conditions) !== 'function') return [];
-    if (_.isArray(value)) return _.filter(value, conditions);
-    if (_.isObject(value)) return _.filter(value.transitions, conditions);
-    return [];
-  },
-
-  metaAttributes: (obj = {}) => {
-    if (!_.isObject(obj)) return {};
-    if (!_.isObject(obj.meta)) return {};
-    return obj.meta.attributes || {};
-  },
-
-  metaLinks: (obj = {}) => {
-    if (!_.isObject(obj)) return [];
-    if (!_.isObject(obj.meta)) return [];
-    return obj.meta.links || [];
-  },
-
-  attributes: (obj = {}) => {
-    if (!_.isObject(obj)) return {};
-    return obj.attributes || {};
-  },
-
-  transitions: (obj = {}) => {
-    if (!_.isObject(obj)) return [];
-    return obj.transitions || [];
-  },
-
+  has: (value = {}, conditions = {}) => !!_.find(getTransitions(value), conditions),
+  find: (value = {}, conditions = {}) => _.find(getTransitions(value), conditions),
+  filter: (value = {}, conditions = {}) => _.filter(getTransitions(value), conditions),
+  metaAttributes: obj => _.get(obj, 'meta.attributes', {}),
+  metaLinks: obj => _.get(obj, 'meta.links', []),
+  attributes: obj => _.get(obj, 'attributes', {}),
+  transitions: obj => _.get(obj, 'transitions', []),
   get: _.get,
 };
