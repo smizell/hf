@@ -169,19 +169,19 @@ This code looks fine. But what if we get back this response later?
 
 ```js
 {
-	"attributes": {},
+  "attributes": {},
   "transitions": []
 }
 ```
 
-The code breaks of course. Using the functions provided, we can do:
+This response will break our code. Using the functions provided in this library, we can do:
 
 ```js
 var bar = hf.path(response, ['attributes', 'foo', 'bar']);
 var selfLink = hf.getBy(response, {rel: 'self'});
 ```
 
-This code would work for the first example, and return `undefined` for both values in the second.
+This code would work for the first response, and return `undefined` for both `bar` and `selfLink` for the second.
 
 ### Summary
 
