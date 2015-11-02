@@ -141,18 +141,18 @@ The functions provided here only take certain types and only return certain type
 
 ```js
 {
-	"attributes": {
+  "attributes": {
     "foo": {
       "bar": "baz"
     }
   },
   "transitions": [
-		{
-			"tag": "link",
-			"ref": "self",
-			"href": "/foo"
-		}
-	]
+    {
+      "tag": "link",
+      "ref": "self",
+      "href": "/foo"
+    }
+  ]
 }
 ```
 
@@ -161,7 +161,7 @@ We may be tempted to write code as such to get the value of `bar` and get the `h
 ```js
 var bar = response.attributes.foo.bar;
 var selfLink = response.transitions.filter(function(transition) {
-	return transition.rel === 'self';
+  return transition.rel === 'self';
 })[0];
 ```
 
