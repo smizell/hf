@@ -1,7 +1,7 @@
 import {expect} from 'chai';
 import hf from '../src/index';
 
-describe('Hf #path', () => {
+describe('Hf #get', () => {
   context('when given a path that exists', () => {
     const hfObj = {
       attributes: {
@@ -15,7 +15,7 @@ describe('Hf #path', () => {
     };
 
     it('returns them all', () => {
-      expect(hf.path(hfObj, ['attributes', 'foo', 0, 'bar', 1])).to.equal('one');
+      expect(hf.get(hfObj, ['attributes', 'foo', 0, 'bar', 1])).to.equal('one');
     });
   });
 
@@ -24,7 +24,7 @@ describe('Hf #path', () => {
       const hfObj = {};
 
       it('returns undefined', () => {
-        expect(hf.path(hfObj, ['attributes', 'foo', 0, 'bar', 1])).to.be.undefined;
+        expect(hf.get(hfObj, ['attributes', 'foo', 0, 'bar', 1])).to.be.undefined;
       });
     });
 
@@ -34,7 +34,7 @@ describe('Hf #path', () => {
         const defaultValue = 'foobar';
 
         it('returns the default value', () => {
-          expect(hf.path(hfObj, ['attributes', 'foo', 0, 'bar', 1], defaultValue)).to.equal(defaultValue);
+          expect(hf.get(hfObj, ['attributes', 'foo', 0, 'bar', 1], defaultValue)).to.equal(defaultValue);
         });
       });
 
@@ -47,7 +47,7 @@ describe('Hf #path', () => {
         const defaultValue = 'foobar';
 
         it('returns the default value', () => {
-          expect(hf.path(hfObj, ['attributes', 'foo'], defaultValue)).to.be.null;
+          expect(hf.get(hfObj, ['attributes', 'foo'], defaultValue)).to.be.null;
         });
       });
     });
@@ -55,19 +55,19 @@ describe('Hf #path', () => {
 
   context('when the value given is not an object or array', () => {
     it('returns undefined', () => {
-      expect(hf.path('foobar', ['foo', 'bar'])).to.be.undefined;
+      expect(hf.get('foobar', ['foo', 'bar'])).to.be.undefined;
     });
   });
 
   context('when the value given is an array', () => {
     it('returns the correct value', () => {
-      expect(hf.path([{ foo: 'bar'}], [0, 'foo'])).to.equal('bar');
+      expect(hf.get([{ foo: 'bar'}], [0, 'foo'])).to.equal('bar');
     });
   });
 
   context('when the value given is null', () => {
     it('returns undefined', () => {
-      expect(hf.path(null, ['foo', 'bar'])).to.be.undefined;
+      expect(hf.get(null, ['foo', 'bar'])).to.be.undefined;
     });
   });
 
@@ -75,7 +75,7 @@ describe('Hf #path', () => {
     const hfObj = {};
 
     it('returns each transition for that given tag', () => {
-      expect(hf.path(hfObj, null)).to.be.undefined;
+      expect(hf.get(hfObj, null)).to.be.undefined;
     });
   });
 });

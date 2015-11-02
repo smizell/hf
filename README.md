@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/smizell/hf.svg)](https://travis-ci.org/smizell/hf)
 
-Hf is a library for working with [Hf representations](#hf-data-structure). It provides functions that take regular JavaScript objects rather than using constructors and prototypes.
+Hf is a library for working with [Hf representations](#hf-data-structure). It provides functions that take regular JavaScript objects rather than using constructors and prototypes. Most of the functions are format-specific wrappers for Lodash functions, such as `find`, `filter`, and `get`.
 
 - [Hf](#hf)
   - [Overview](#overview)
@@ -13,13 +13,13 @@ Hf is a library for working with [Hf representations](#hf-data-structure). It pr
   - [Install](#install)
   - [Usage](#usage)
     - [`hf.has`](#hfhas)
-    - [`hf.getBy`](#hfgetby)
-    - [`hf.filterBy`](#hffilterby)
+    - [`hf.find`](#hffind)
+    - [`hf.filter`](#hffilter)
     - [`hf.metaAttributes`](#hfmetaattributes)
     - [`hf.metaLinks`](#hfmetalinks)
     - [`hf.attributes`](#hfattributes)
     - [`hf.transitions`](#hftransitions)
-    - [`hf.path`](#hfpath)
+    - [`hf.get`](#hfpath)
   - [Example Hf object](#example-hf-object)
   - [Hf Data Structure](#hf-data-structure)
     - [Hf (object)](#hf-object)
@@ -185,7 +185,7 @@ This code would work for the first response, and return `undefined` for both `ba
 
 ### Summary
 
-This library and format come from headaches encountered with working directly with JSON. It is made to provide simple functions for interacting with a single data structure. It's meant to be very almost-laughably simple. 
+This library and format come from headaches encountered with working directly with JSON. It is made to provide simple functions for interacting with a single data structure. It's meant to be very almost-laughably simple.
 
 ## Install
 
@@ -204,36 +204,36 @@ Takes an Hf object or transitions array and a conditions object and returns true
 hf.has(hfObj, {rel: 'next'});
 ```
 
-### `hf.getBy`
+### `hf.find`
 
-Takes an Hf object or transitions array as the first argument and a conditions object or function as the second argument. It returns the first matching transition or `undefined`.
+Takes an Hf object or transitions array as the first argument and a conditions object or function as the second argument. It returns the first matching transition or `undefined`. A wrapper for [lodash.find](https://lodash.com/docs#find).
 
 ```js
 // returns first transition with rel next and tag link
-hf.getBy(hfObj, {rel: 'next', tag: 'link'});
+hf.find(hfObj, {rel: 'next', tag: 'link'});
 
 // returns first transition with rel next regardless of tag
-hf.getBy(hfObj, {rel: 'next'});
+hf.find(hfObj, {rel: 'next'});
 
 // returns first transition with rel next
-hf.getBy(hfObj, function(transition) {
+hf.find(hfObj, function(transition) {
   return transition.rel === 'next';
 });
 ```
 
-### `hf.filterBy`
+### `hf.filter`
 
-Takes an Hf object or transitions array as the first argument and a conditions object or function as the second argument. It returns all transitions with matching conditions or an empty array.
+Takes an Hf object or transitions array as the first argument and a conditions object or function as the second argument. It returns all transitions with matching conditions or an empty array. A wrapper for [lodash.filter](https://lodash.com/docs#filter).
 
 ```js
 // returns all transitions with rel next and tag link
-hf.filterBy(hfObj, {rel: 'next', tag: 'link'});
+hf.filter(hfObj, {rel: 'next', tag: 'link'});
 
 // returns all transitions with rel next regardless of tag
-hf.filterBy(hfObj, {rel: 'next'});
+hf.filter(hfObj, {rel: 'next'});
 
 // returns all transitions with rel next
-hf.filterBy(hfObj, function(transition) {
+hf.filter(hfObj, function(transition) {
   return transition.rel === 'next';
 });
 ```
@@ -274,13 +274,13 @@ Takes an Hf object and returns the transitions if there are any. You use this in
 hf.transitions(hfObj);
 ```
 
-### `hf.path`
+### `hf.get`
 
 Takes an object or array and an array of steps. It returns the value if found or undefined if not.
 
 ```js
 // Returns 'one'
-hf.path({
+hf.get({
   attributes: {
     bar: 'foo',
     foo: [{bar: ['zero', 'one', 'two']}],
@@ -288,11 +288,11 @@ hf.path({
 }, ['attributes', 'foo', 0, 'bar', 1]);
 ```
 
-The `path` function also takes a default value as the last argument in the event the path was not found.
+The `get` function also takes a default value as the last argument in the event the path was not found.
 
 ```js
 // Returns 'foobar'
-hf.path({}, ['attributes', 'foo', 0, 'bar', 1], 'foobar');
+hf.get({}, ['attributes', 'foo', 0, 'bar', 1], 'foobar');
 ```
 
 ## Example Hf object
