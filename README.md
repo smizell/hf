@@ -19,7 +19,7 @@ Hf is a library for working with [Hf representations](#hf-data-structure). It pr
     - [`hf.metaLinks`](#hfmetalinks)
     - [`hf.attributes`](#hfattributes)
     - [`hf.transitions`](#hftransitions)
-    - [`hf.get`](#hfpath)
+    - [`hf.get`](#hfget)
   - [Example Hf object](#example-hf-object)
   - [Hf Data Structure](#hf-data-structure)
     - [Hf (object)](#hf-object)
@@ -288,7 +288,7 @@ hf.get({
 }, ['attributes', 'foo', 0, 'bar', 1]);
 ```
 
-The `get` function also takes a default value as the last argument in the event the path was not found.
+The `get` function also takes a default value as the last argument in the event the path was not found. A wrapper for [lodash.get](https://lodash.com/docs#get).
 
 ```js
 // Returns 'foobar'
