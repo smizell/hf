@@ -1,25 +1,21 @@
 import _ from './utils';
 
+function getTransitions(value) {
+  if (_.isArray(value)) return value;
+  if (_.isObject(value)) return value.transitions;
+}
+
 export default {
   has: (value = {}, conditions = {}) => {
-    if (!_.isObject(conditions)) return false;
-    if (_.isArray(value)) return !!_.find(value, conditions);
-    if (_.isObject(value)) return !!_.find(value.transitions, conditions);
-    return false;
+    return !!_.find(getTransitions(value), conditions);
   },
 
   find: (value = {}, conditions = {}) => {
-    if (!_.isObject(conditions) && typeof (conditions) !== 'function') return undefined;
-    if (_.isArray(value)) return _.find(value, conditions);
-    if (_.isObject(value)) return _.find(value.transitions, conditions);
-    return undefined;
+    return _.find(getTransitions(value), conditions);
   },
 
   filter: (value = {}, conditions = {}) => {
-    if (!_.isObject(conditions) && typeof (conditions) !== 'function') return [];
-    if (_.isArray(value)) return _.filter(value, conditions);
-    if (_.isObject(value)) return _.filter(value.transitions, conditions);
-    return [];
+    return _.filter(getTransitions(value), conditions);
   },
 
   metaAttributes: (obj = {}) => {
